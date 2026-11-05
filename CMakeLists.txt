@@ -35,6 +35,7 @@ add_executable(MyOpenGLApp
     ${imgui_SOURCE_DIR}/imgui_draw.cpp
     ${imgui_SOURCE_DIR}/imgui_tables.cpp
     ${imgui_SOURCE_DIR}/imgui_widgets.cpp
+    ${imgui_SOURCE_DIR}/imgui_demo.cpp
 
     # Dear ImGui GLFW + OpenGL backends
     ${imgui_SOURCE_DIR}/backends/imgui_impl_glfw.cpp
