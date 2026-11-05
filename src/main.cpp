@@ -3,6 +3,10 @@
 
 #include <iostream>
 
+#include "imgui.h"
+#include "imgui_impl_glfw.h"
+#include "imgui_impl_opengl3.h"
+
 // Handle window resizing
 void framebuffer_size_callback(
     GLFWwindow* window,
@@ -76,6 +80,18 @@ int main()
     //           << glGetString(GL_VERSION)
     //           << "\n";
 
+    // Initialize ImGui
+    IMGUI_CHECKVERSION();
+    ImGui::CreateContext();
+
+    ImGuiIO& io = ImGui::GetIO();
+
+    ImGui::StyleColorsDark();
+
+    ImGui_ImplGlfw_InitForOpenGL(window, true);
+    ImGui_ImplOpenGL3_Init("#version 330");
+
+
     // Main application loop
     while (!glfwWindowShouldClose(window))
     {
@@ -95,9 +111,42 @@ int main()
 
         // Handle events
         glfwPollEvents();
+
+        // Start ImGui frame
+        ImGui_ImplOpenGL3_NewFrame();
+        ImGui_ImplGlfw_NewFrame();
+        ImGui::NewFrame();
+
+        // Create UI window
+        ImGui::Begin("My OpenGL App");
+
+        ImGui::Text("Welcome to my application!");
+
+        if (ImGui::Button("Click me"))
+        {
+            std::cout << "Button clicked!" << std::endl;
+        }
+
+        static float value = 0.5f;
+        ImGui::SliderFloat("Value", &value, 0.0f, 1.0f);
+
+        static bool enabled = false;
+        ImGui::Checkbox("Enabled", &enabled);
+
+        ImGui::End();
+
+        // Render UI
+        ImGui::Render();
+        ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
     }
 
-    // Cleanup
+
+    // Cleanup Imgui thingies
+    ImGui_ImplOpenGL3_Shutdown();
+    ImGui_ImplGlfw_Shutdown();
+    ImGui::DestroyContext();
+
+    // Cleanup GLFW window
     glfwDestroyWindow(window);
     glfwTerminate();
 
