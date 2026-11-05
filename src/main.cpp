@@ -93,37 +93,36 @@ int main()
 
 
     // Main application loop
-    while (!glfwWindowShouldClose(window))
-    {
+    while (!glfwWindowShouldClose(window)) {
+        
+        // Handle events
+        glfwPollEvents();
+
         // Background color
         glClearColor(
-            0.7f,
-            0.12f,
-            0.17f,
-            0.1f
+            0.75f,
+            0.72f,
+            0.77f,
+            1.0f
         );
 
         // Clear screen
         glClear(GL_COLOR_BUFFER_BIT);
-
-        // Display frame
-        glfwSwapBuffers(window);
-
-        // Handle events
-        glfwPollEvents();
 
         // Start ImGui frame
         ImGui_ImplOpenGL3_NewFrame();
         ImGui_ImplGlfw_NewFrame();
         ImGui::NewFrame();
 
+        // Display ImGui demo window
+        // ImGui::ShowDemoWindow();
+
         // Create UI window
         ImGui::Begin("My OpenGL App");
 
         ImGui::Text("Welcome to my application!");
 
-        if (ImGui::Button("Click me"))
-        {
+        if (ImGui::Button("Click me")) {
             std::cout << "Button clicked!" << std::endl;
         }
 
@@ -135,9 +134,12 @@ int main()
 
         ImGui::End();
 
-        // Render UI
+        // Render ImGui
         ImGui::Render();
         ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+
+        // Display frame
+        glfwSwapBuffers(window);
     }
 
 
