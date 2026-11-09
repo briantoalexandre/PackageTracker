@@ -40,7 +40,7 @@ int main()
     GLFWwindow* window = glfwCreateWindow(
         1200,
         800,
-        "My First OpenGL Application",
+        "Package Tracker",
         nullptr,
         nullptr
     );
@@ -91,6 +91,12 @@ int main()
     ImGui_ImplGlfw_InitForOpenGL(window, true);
     ImGui_ImplOpenGL3_Init("#version 330");
 
+    // flags
+        ImGuiWindowFlags window_flags = 0;
+        window_flags |= ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoSavedSettings;
+
+    
+
 
     // Main application loop
     while (!glfwWindowShouldClose(window)) {
@@ -117,20 +123,32 @@ int main()
         // Display ImGui demo window
         // ImGui::ShowDemoWindow();
 
+        static bool use_work_area = true;
+
+        // get Viewport (fill space for the root window)
+        const ImGuiViewport* viewport = ImGui::GetMainViewport();
+        ImGui::SetNextWindowPos(use_work_area ? viewport->WorkPos : viewport->Pos);
+        ImGui::SetNextWindowSize(use_work_area ? viewport->WorkSize : viewport->Size);
+
+
+        //
+        //ImGui::SetNextWindowSizeConstraints(ImVec2(100, 100), ImVec2(500, 500));
+
+
         // Create UI window
-        ImGui::Begin("My OpenGL App");
+        ImGui::Begin("root", NULL, window_flags);
 
-        ImGui::Text("Welcome to my application!");
+        // ImGui::Text("Welcome to my application!");
 
-        if (ImGui::Button("Click me")) {
-            std::cout << "Button clicked!" << std::endl;
-        }
+        // if (ImGui::Button("Click me")) {
+        //     std::cout << "Button clicked!" << std::endl;
+        // }
 
-        static float value = 0.5f;
-        ImGui::SliderFloat("Value", &value, 0.0f, 1.0f);
+        // static float value = 0.5f;
+        // ImGui::SliderFloat("Value", &value, 0.0f, 1.0f);
 
-        static bool enabled = false;
-        ImGui::Checkbox("Enabled", &enabled);
+        // static bool enabled = false;
+        // ImGui::Checkbox("Enabled", &enabled);
 
         ImGui::End();
 
@@ -140,6 +158,7 @@ int main()
 
         // Display frame
         glfwSwapBuffers(window);
+
     }
 
 
