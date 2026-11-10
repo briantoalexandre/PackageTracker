@@ -7,6 +7,10 @@
 #include "imgui_impl_glfw.h"
 #include "imgui_impl_opengl3.h"
 
+// Include objects
+
+#include "objects/Devices/End/End_Devices/PC.h"
+
 // Handle window resizing
 void framebuffer_size_callback(
     GLFWwindow* window,
@@ -16,8 +20,15 @@ void framebuffer_size_callback(
     glViewport(0, 0, width, height);
 }
 
+void test() {
+    PC pc1 = PC();
+    std::cout << pc1.str();
+}
+
 int main()
 {   
+    test();
+    return 0;
     // Initialize GLFW
     if (!glfwInit())
     {
@@ -92,11 +103,8 @@ int main()
     ImGui_ImplOpenGL3_Init("#version 330");
 
     // flags
-        ImGuiWindowFlags window_flags = 0;
-        window_flags |= ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoSavedSettings;
-
-    
-
+    ImGuiWindowFlags window_flags = 0;
+    window_flags |= ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoSavedSettings;
 
     // Main application loop
     while (!glfwWindowShouldClose(window)) {
@@ -130,10 +138,8 @@ int main()
         ImGui::SetNextWindowPos(use_work_area ? viewport->WorkPos : viewport->Pos);
         ImGui::SetNextWindowSize(use_work_area ? viewport->WorkSize : viewport->Size);
 
-
         //
         //ImGui::SetNextWindowSizeConstraints(ImVec2(100, 100), ImVec2(500, 500));
-
 
         // Create UI window
         ImGui::Begin("root", NULL, window_flags);
