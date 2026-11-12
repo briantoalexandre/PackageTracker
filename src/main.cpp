@@ -1,3 +1,4 @@
+//TODO : add counter for object
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
@@ -10,6 +11,7 @@
 // Include objects
 
 #include "objects/Devices/End/End_Devices/PC.h"
+#include "objects/Object.h"
 
 // Handle window resizing
 void framebuffer_size_callback(

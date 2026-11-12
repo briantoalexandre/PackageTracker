@@ -3,16 +3,23 @@
 #include <string>
 #include <sstream>
 
-class PC
+#include "objects/Object.h"
+
+class PC : public Object
 {
-private:
-    mutable std::string name;
+// private:
+
 
 public:
-    PC() : name("PC") {};
+    PC() : Object("PC") {};
+    PC(const std::string& _name) : Object(_name) {};
 
+    void changeName(std::string name) {
+        this->name = name;
+    }
 
     void draw(int x=0, int y=0) {};
+
     std::string str() const {
         std::ostringstream oss;
         oss << "name : " << this->name;
