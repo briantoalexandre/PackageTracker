@@ -12,6 +12,7 @@
 
 #include "objects/Devices/End/End_Devices/PC.h"
 #include "objects/Object.h"
+#include "objects/Counter.h"
 
 // Handle window resizing
 void framebuffer_size_callback(
@@ -24,7 +25,9 @@ void framebuffer_size_callback(
 
 void test() {
     PC pc1 = PC();
-    std::cout << pc1.str();
+    std::cout << pc1.str() << " of class " << pc1.__class__ << std::endl;
+    Counter co1 = Counter();
+    std::cout << co1.str() << std::endl;
 }
 
 int main()

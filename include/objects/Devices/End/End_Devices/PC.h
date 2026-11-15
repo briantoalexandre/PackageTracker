@@ -7,22 +7,23 @@
 
 class PC : public Object
 {
-// private:
-
+private:
+    const std::string type = "end_device";
 
 public:
+    std::string __class__ = "PC";
     PC() : Object("PC") {};
     PC(const std::string& _name) : Object(_name) {};
 
-    void changeName(std::string name) {
-        this->name = name;
-    }
+    // void changeName(std::string name) {
+    //     this->name = name;
+    // }
 
-    void draw(int x=0, int y=0) {};
+    // void draw(int x=0, int y=0) {};
 
-    std::string str() const {
-        std::ostringstream oss;
-        oss << "name : " << this->name;
-        return oss.str();
-    };
+    // std::string str() const {
+    //     std::ostringstream oss;
+    //     oss << "name : " << this->name;
+    //     return oss.str();
+    // };
 };

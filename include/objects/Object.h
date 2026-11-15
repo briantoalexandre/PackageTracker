@@ -3,6 +3,8 @@
 #include <string>
 #include <sstream>
 
+#include "Counter.h"
+
 class Object
 {
 protected:
@@ -11,16 +13,16 @@ protected:
 public:
     Object(const std::string _name="") : name(_name) {};
 
-    // void changeName(std::string name) {
-    //     this->name = name;
-    // }
+    void changeName(std::string name) {
+        this->name = name;
+    }
 
 
-    // void draw(int x=0, int y=0) {};
+    void draw(int x=0, int y=0) {};
     
-    // std::string str() const {
-    //     std::ostringstream oss;
-    //     oss << "name : " << this->name;
-    //     return oss.str();
-    // };
+    std::string str() const {
+        std::ostringstream oss;
+        oss << "name : " << this->name;
+        return oss.str();
+    };
 };
