@@ -12,12 +12,11 @@ Counter global_Counter;
 class PC : public Object
 {
 private:
-    const std::string type = "end_device";
-    const std::string __class__ = "PC";
-    const std::string name = global_Counter.getNameWithValue(__class__);
+    inline static const std::string type = "end_device";
 
 public:
-    PC() : Object("") {};
+    inline static const std::string __class__ = "PC"; 
+    PC() : Object(global_Counter.getNameWithValue_Increment(__class__)) {};
     PC(const std::string& _name) : Object(_name) {};
 
     // void changeName(std::string name) {

@@ -11,7 +11,7 @@ protected:
     mutable std::string name;
 
 public:
-    Object(const std::string _name="") : name(_name) {};
+    Object(const std::string _name) : name(_name) {};
 
     void changeName(std::string name) {
         this->name = name;
