@@ -3,10 +3,22 @@
 #include <iostream>
 #include <unordered_map>
 #include <string>
+#include <sstream>
 
 
 class Counter
 {
+private:
+    int increment(std::string key) {
+        auto it = dictionary.find(key);
+        int count = 0;
+        if (it != dictionary.end()) {
+            count = it->second;
+            dictionary.erase(it);
+        }
+        dictionary.insert({key, ++count});
+        return count;
+    }
 
 public:
     std::string __class__ = "Counter";
@@ -16,24 +28,13 @@ public:
 
     Counter() {}; 
     
-    void incr(std::string) {
-        
+    std::string getNameWithValue(std::string name) {
+        int _ = increment(name);
+        std::ostringstream oss;
+        oss << name << " " << _;
+        return oss.str();
     }
-
-    void add(std::string key) {
-        dictionary.insert({key, 0})
-    }
-
-    void change(std::string key, newValue) {
-        auto it = 
-        if (it != um.end()) {
-            
-            um.erase(it); // remove old key
-            um.insert({key, value}); // insert new key
-}
-    }
-
-
+      
     std::string str() const {
         std::ostringstream oss;
         oss << "[";
@@ -54,3 +55,5 @@ public:
         return oss.str();
     };
 };
+
+extern Counter global_Counter;

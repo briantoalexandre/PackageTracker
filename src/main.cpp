@@ -26,8 +26,10 @@ void framebuffer_size_callback(
 void test() {
     PC pc1 = PC();
     std::cout << pc1.str() << " of class " << pc1.__class__ << std::endl;
-    Counter co1 = Counter();
-    std::cout << co1.str() << std::endl;
+    
+    std::cout << global_Counter.str() << std::endl;
+    
+    std::cout << global_Counter.str() << std::endl;
 }
 
 int main()
